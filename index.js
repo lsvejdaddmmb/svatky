@@ -27,8 +27,8 @@ function zpracujPozadavek(req, res) {
     }
     if (req.url === "/svatky") {
         res.writeHead(200, {"Content-type":"application/json"});
-        let m = 7;
-        let d = 23;
+        let m = 10; //mesic
+        let d = 15; //den
         let obj = {};
         obj.datum = d+"."+m+".";
         obj.svatek = SVATKY[m][d];
