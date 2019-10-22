@@ -39,9 +39,9 @@ function zpracujPozadavek(req, res) {
     if (req.url === "/cas") {
         res.writeHead(200, {"Content-type":"application/json"});
         let dt = new Date();
-        let h = dt.getHours();
-        let m = dt.getMinutes();
-        let s = dt.getSeconds();
+        let h = dt.getHours().toString().padStart(2, "0");
+        let m = dt.getMinutes().toString().padStart(2, "0");
+        let s = dt.getSeconds().toString().padStart(2, "0");
         let obj = {};
         obj.cas = h+":"+m+":"+s;
         res.end(JSON.stringify(obj));
