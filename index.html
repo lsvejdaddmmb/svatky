@@ -5,6 +5,8 @@
     <title>Svátky</title>
     <script>
         function nactiSvatek() {
+            setInterval(nactiCas, 1000);
+
             fetch("http://localhost:8888/svatky").then(function(response) {
                 response.text().then(function(text) {
                     let obj = JSON.parse(text);
@@ -13,11 +15,21 @@
                 });
             });
         }
+        function nactiCas() {
+            fetch("http://localhost:8888/cas").then(function(response) {
+                response.text().then(function(text) {
+                    let obj = JSON.parse(text);
+                    document.getElementById("cas").innerHTML = obj.cas;
+                });
+            });
+        }
     </script>
 </head>
 <body onload="nactiSvatek()">
 
 Dnes je <b id="datum">...</b> a svátek má <b id="svatek">...</b>.
+<br><br>
+Čas na serveru je <b id="cas">...</b>.
 
 </body>
 </html>

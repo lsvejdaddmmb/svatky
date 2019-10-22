@@ -36,6 +36,16 @@ function zpracujPozadavek(req, res) {
         obj.svatek = SVATKY[m][d];
         res.end(JSON.stringify(obj));
     }
+    if (req.url === "/cas") {
+        res.writeHead(200, {"Content-type":"application/json"});
+        let dt = new Date();
+        let h = dt.getHours();
+        let m = dt.getMinutes();
+        let s = dt.getSeconds();
+        let obj = {};
+        obj.cas = h+":"+m+":"+s;
+        res.end(JSON.stringify(obj));
+    }
 }
 
 let srv = http.createServer(zpracujPozadavek);
