@@ -27,10 +27,12 @@ function zpracujPozadavek(req, res) {
     }
     if (req.url === "/svatky") {
         res.writeHead(200, {"Content-type":"application/json"});
-        let m = 10; //mesic
-        let d = 15; //den
+        let dt = new Date();
+        let r = dt.getFullYear(); //rok
+        let m = dt.getMonth() +1; //mesic; POZOR! getMonth vraci leden=0, unor=1,...,prosinec=11
+        let d = dt.getDate(); //den; POZOR! Neplest s getDay, ktery vraci den v tydnu
         let obj = {};
-        obj.datum = d+"."+m+".";
+        obj.datum = d+"."+m+"."+r;
         obj.svatek = SVATKY[m][d];
         res.end(JSON.stringify(obj));
     }
